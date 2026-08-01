@@ -14,7 +14,7 @@ from urllib.request import Request, urlopen
 
 DEFAULT_BASE_URL = "https://api.openai.com/v1"
 DEFAULT_MODEL = "gpt-5.6-luna"
-ENV_FILE = Path(__file__).resolve().with_name(".env")
+ENV_FILE = Path(__file__).resolve().parents[1] / ".env"
 ENV_KEYS = {
     "OPENAI_API_KEY",
     "LLM_BASE_URL",

@@ -2,7 +2,7 @@
 
 - 日期：2026-07-25
 - 執行環境：應用伺服器連線至 H200 GPU Server 的 vLLM `/metrics`
-- 收集工具：`collect_vllm_metrics.py`
+- 收集工具：`scripts/collect_vllm_metrics.py`
 - 輸出格式：CSV，後續使用 Excel 分析
 
 ## 1. 目標
