@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Send one prefix file to the OpenAI Chat Completions API."""
+"""Send one prefix file to an OpenAI-compatible Chat Completions API."""
 
 import argparse
 import json
@@ -15,12 +15,20 @@ from urllib.request import Request, urlopen
 DEFAULT_BASE_URL = "https://api.openai.com/v1"
 DEFAULT_MODEL = "gpt-5.6-luna"
 ENV_FILE = Path(__file__).resolve().with_name(".env")
+ENV_KEYS = {
+    "OPENAI_API_KEY",
+    "LLM_BASE_URL",
+    "MODEL_NAME",
+    "TOKEN_LIMIT_PARAMETER",
+    "REASONING_EFFORT",
+}
+TOKEN_LIMIT_PARAMETERS = {"max_completion_tokens", "max_tokens"}
 
 
-def load_api_key_from_env_file(path: Path) -> None:
-    """Load OPENAI_API_KEY from a small .env file if it is not already set."""
+def load_env_file(path: Path) -> None:
+    """Load supported values from .env without overwriting shell variables."""
 
-    if "OPENAI_API_KEY" in os.environ or not path.is_file():
+    if not path.is_file():
         return
 
     for raw_line in path.read_text(encoding="utf-8").splitlines():
@@ -31,12 +39,12 @@ def load_api_key_from_env_file(path: Path) -> None:
             line = line.removeprefix("export ").lstrip()
 
         key, separator, value = line.partition("=")
-        if separator and key.strip() == "OPENAI_API_KEY":
+        key = key.strip()
+        if separator and key in ENV_KEYS and key not in os.environ:
             value = value.strip()
             if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
                 value = value[1:-1]
-            os.environ["OPENAI_API_KEY"] = value
-            return
+            os.environ[key] = value
 
 
 def parse_args() -> argparse.Namespace:
@@ -50,13 +58,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--model",
-        default=os.environ.get("OPENAI_MODEL", DEFAULT_MODEL),
-        help=f"Model name (default: OPENAI_MODEL or {DEFAULT_MODEL}).",
+        default=os.environ.get("MODEL_NAME") or DEFAULT_MODEL,
+        help=f"Model name (default: MODEL_NAME or {DEFAULT_MODEL}).",
     )
     parser.add_argument(
         "--base-url",
-        default=os.environ.get("OPENAI_BASE_URL", DEFAULT_BASE_URL),
-        help=f"API base URL (default: {DEFAULT_BASE_URL}).",
+        default=os.environ.get("LLM_BASE_URL") or DEFAULT_BASE_URL,
+        help=f"API base URL (default: LLM_BASE_URL or {DEFAULT_BASE_URL}).",
     )
     parser.add_argument(
         "--timeout",
@@ -79,7 +87,7 @@ def read_prefix(path: Path) -> str:
 
 def main() -> int:
     try:
-        load_api_key_from_env_file(ENV_FILE)
+        load_env_file(ENV_FILE)
     except (OSError, UnicodeError) as error:
         print(f"Unable to read {ENV_FILE}: {error}", file=sys.stderr)
         return 2
@@ -99,12 +107,27 @@ def main() -> int:
         print(error, file=sys.stderr)
         return 2
 
+    token_limit_parameter = os.environ.get(
+        "TOKEN_LIMIT_PARAMETER",
+        "max_completion_tokens",
+    )
+    if token_limit_parameter not in TOKEN_LIMIT_PARAMETERS:
+        supported_parameters = ", ".join(sorted(TOKEN_LIMIT_PARAMETERS))
+        print(
+            "TOKEN_LIMIT_PARAMETER must be one of: "
+            f"{supported_parameters}.",
+            file=sys.stderr,
+        )
+        return 2
+
     payload = {
         "model": args.model,
         "messages": [{"role": "user", "content": prompt}],
-        "max_completion_tokens": 16,
-        "reasoning_effort": "none",
+        token_limit_parameter: 16,
     }
+    reasoning_effort = os.environ.get("REASONING_EFFORT")
+    if reasoning_effort:
+        payload["reasoning_effort"] = reasoning_effort
     request = Request(
         url=f"{args.base_url.rstrip('/')}/chat/completions",
         data=json.dumps(payload).encode("utf-8"),
