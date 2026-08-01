@@ -94,12 +94,6 @@ def main() -> int:
 
     args = parse_args()
     api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        print(
-            f"Missing OPENAI_API_KEY. Set it in {ENV_FILE} or the environment.",
-            file=sys.stderr,
-        )
-        return 2
 
     try:
         prompt = read_prefix(args.prefix_file)
@@ -128,13 +122,15 @@ def main() -> int:
     reasoning_effort = os.environ.get("REASONING_EFFORT")
     if reasoning_effort:
         payload["reasoning_effort"] = reasoning_effort
+
+    headers = {"Content-Type": "application/json"}
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+
     request = Request(
         url=f"{args.base_url.rstrip('/')}/chat/completions",
         data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
+        headers=headers,
         method="POST",
     )
 
