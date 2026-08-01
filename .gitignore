@@ -1,0 +1,35 @@
+# Python virtual environments and bytecode
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test, coverage, and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime metrics and logs
+vllm_metrics_*.csv
+*.log
+
+# Downloaded model and tokenizer artifacts
+model-export/
+
+# Hugging Face download metadata
+.cache/huggingface/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

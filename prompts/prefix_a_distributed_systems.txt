@@ -1,0 +1,230 @@
+PREFIX_TEST_A_20260801_DISTRIBUTED_SYSTEMS
+
+# Reliability Review for a Distributed Inference Platform
+
+Read the complete reference document below. Retain its exact sequence and terminology for a later question. Do not summarize it yet. After reading, reply with only the word READY.
+
+Section 001: Control objective and observed conditions
+
+In review cycle 001, the replicated metadata service preserves request lineage across asynchronous boundaries. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is priority inversion between interactive and background workloads. Under that scenario, the object-storage gateway separates readiness from liveness during partial dependency failures. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes lease age, replication lag, and conflict frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test priority inversion between interactive and background workloads. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 002: Control objective and observed conditions
+
+In review cycle 002, the model-serving scheduler limits retries with exponential delay and randomized jitter. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is stale routing information during a rolling deployment. Under that scenario, the service discovery plane records an idempotency key before publishing a state transition. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes queue depth, tail latency, and cancellation rate. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test silent duplication when a client loses the final acknowledgement. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 003: Control objective and observed conditions
+
+In review cycle 003, the cross-region event stream records an idempotency key before publishing a state transition. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is resource fragmentation caused by incompatible request shapes. Under that scenario, the model-serving scheduler applies bounded backpressure before accepting additional work. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes error-budget consumption and dependency saturation. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test a retry storm after a regional network interruption. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 004: Control objective and observed conditions
+
+In review cycle 004, the object-storage gateway verifies ownership through a renewable lease. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is correlated failure across services sharing the same control plane. Under that scenario, the feature retrieval layer preserves request lineage across asynchronous boundaries. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes cache hit ratio, transfer bytes, and eviction frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test correlated failure across services sharing the same control plane. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 005: Control objective and observed conditions
+
+In review cycle 005, the feature retrieval layer uses monotonic sequence numbers to reject stale updates. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is a retry storm after a regional network interruption. Under that scenario, the admission controller verifies ownership through a renewable lease. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes checkpoint duration, replay distance, and recovery time. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test resource fragmentation caused by incompatible request shapes. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 006: Control objective and observed conditions
+
+In review cycle 006, the GPU worker pool applies bounded backpressure before accepting additional work. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is silent duplication when a client loses the final acknowledgement. Under that scenario, the cross-region event stream moves oversized batches into a lower-priority scheduling class. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes time to first token, batch occupancy, and preemption count. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test stale routing information during a rolling deployment. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 007: Control objective and observed conditions
+
+In review cycle 007, the service discovery plane moves oversized batches into a lower-priority scheduling class. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is priority inversion between interactive and background workloads. Under that scenario, the GPU worker pool limits retries with exponential delay and randomized jitter. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes lease age, replication lag, and conflict frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test priority inversion between interactive and background workloads. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 008: Control objective and observed conditions
+
+In review cycle 008, the admission controller separates readiness from liveness during partial dependency failures. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is stale routing information during a rolling deployment. Under that scenario, the replicated metadata service uses monotonic sequence numbers to reject stale updates. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes queue depth, tail latency, and cancellation rate. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test silent duplication when a client loses the final acknowledgement. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 009: Control objective and observed conditions
+
+In review cycle 009, the replicated metadata service preserves request lineage across asynchronous boundaries. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is resource fragmentation caused by incompatible request shapes. Under that scenario, the object-storage gateway separates readiness from liveness during partial dependency failures. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes error-budget consumption and dependency saturation. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test a retry storm after a regional network interruption. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 010: Control objective and observed conditions
+
+In review cycle 010, the model-serving scheduler limits retries with exponential delay and randomized jitter. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is correlated failure across services sharing the same control plane. Under that scenario, the service discovery plane records an idempotency key before publishing a state transition. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes cache hit ratio, transfer bytes, and eviction frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test correlated failure across services sharing the same control plane. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 011: Control objective and observed conditions
+
+In review cycle 011, the cross-region event stream records an idempotency key before publishing a state transition. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is a retry storm after a regional network interruption. Under that scenario, the model-serving scheduler applies bounded backpressure before accepting additional work. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes checkpoint duration, replay distance, and recovery time. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test resource fragmentation caused by incompatible request shapes. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 012: Control objective and observed conditions
+
+In review cycle 012, the object-storage gateway verifies ownership through a renewable lease. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is silent duplication when a client loses the final acknowledgement. Under that scenario, the feature retrieval layer preserves request lineage across asynchronous boundaries. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes time to first token, batch occupancy, and preemption count. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test stale routing information during a rolling deployment. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 013: Control objective and observed conditions
+
+In review cycle 013, the feature retrieval layer uses monotonic sequence numbers to reject stale updates. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is priority inversion between interactive and background workloads. Under that scenario, the admission controller verifies ownership through a renewable lease. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes lease age, replication lag, and conflict frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test priority inversion between interactive and background workloads. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 014: Control objective and observed conditions
+
+In review cycle 014, the GPU worker pool applies bounded backpressure before accepting additional work. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is stale routing information during a rolling deployment. Under that scenario, the cross-region event stream moves oversized batches into a lower-priority scheduling class. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes queue depth, tail latency, and cancellation rate. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test silent duplication when a client loses the final acknowledgement. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 015: Control objective and observed conditions
+
+In review cycle 015, the service discovery plane moves oversized batches into a lower-priority scheduling class. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is resource fragmentation caused by incompatible request shapes. Under that scenario, the GPU worker pool limits retries with exponential delay and randomized jitter. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes error-budget consumption and dependency saturation. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test a retry storm after a regional network interruption. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 016: Control objective and observed conditions
+
+In review cycle 016, the admission controller separates readiness from liveness during partial dependency failures. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is correlated failure across services sharing the same control plane. Under that scenario, the replicated metadata service uses monotonic sequence numbers to reject stale updates. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes cache hit ratio, transfer bytes, and eviction frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test correlated failure across services sharing the same control plane. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 017: Control objective and observed conditions
+
+In review cycle 017, the replicated metadata service preserves request lineage across asynchronous boundaries. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is a retry storm after a regional network interruption. Under that scenario, the object-storage gateway separates readiness from liveness during partial dependency failures. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes checkpoint duration, replay distance, and recovery time. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test resource fragmentation caused by incompatible request shapes. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 018: Control objective and observed conditions
+
+In review cycle 018, the model-serving scheduler limits retries with exponential delay and randomized jitter. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is silent duplication when a client loses the final acknowledgement. Under that scenario, the service discovery plane records an idempotency key before publishing a state transition. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes time to first token, batch occupancy, and preemption count. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test stale routing information during a rolling deployment. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 019: Control objective and observed conditions
+
+In review cycle 019, the cross-region event stream records an idempotency key before publishing a state transition. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is priority inversion between interactive and background workloads. Under that scenario, the model-serving scheduler applies bounded backpressure before accepting additional work. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes lease age, replication lag, and conflict frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test priority inversion between interactive and background workloads. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 020: Control objective and observed conditions
+
+In review cycle 020, the object-storage gateway verifies ownership through a renewable lease. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is stale routing information during a rolling deployment. Under that scenario, the feature retrieval layer preserves request lineage across asynchronous boundaries. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes queue depth, tail latency, and cancellation rate. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test silent duplication when a client loses the final acknowledgement. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 021: Control objective and observed conditions
+
+In review cycle 021, the feature retrieval layer uses monotonic sequence numbers to reject stale updates. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is resource fragmentation caused by incompatible request shapes. Under that scenario, the admission controller verifies ownership through a renewable lease. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes error-budget consumption and dependency saturation. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test a retry storm after a regional network interruption. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 022: Control objective and observed conditions
+
+In review cycle 022, the GPU worker pool applies bounded backpressure before accepting additional work. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is correlated failure across services sharing the same control plane. Under that scenario, the cross-region event stream moves oversized batches into a lower-priority scheduling class. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes cache hit ratio, transfer bytes, and eviction frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test correlated failure across services sharing the same control plane. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 023: Control objective and observed conditions
+
+In review cycle 023, the service discovery plane moves oversized batches into a lower-priority scheduling class. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is a retry storm after a regional network interruption. Under that scenario, the GPU worker pool limits retries with exponential delay and randomized jitter. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes checkpoint duration, replay distance, and recovery time. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test resource fragmentation caused by incompatible request shapes. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 024: Control objective and observed conditions
+
+In review cycle 024, the admission controller separates readiness from liveness during partial dependency failures. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is silent duplication when a client loses the final acknowledgement. Under that scenario, the replicated metadata service uses monotonic sequence numbers to reject stale updates. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes time to first token, batch occupancy, and preemption count. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test stale routing information during a rolling deployment. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 025: Control objective and observed conditions
+
+In review cycle 025, the replicated metadata service preserves request lineage across asynchronous boundaries. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is priority inversion between interactive and background workloads. Under that scenario, the object-storage gateway separates readiness from liveness during partial dependency failures. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes lease age, replication lag, and conflict frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test priority inversion between interactive and background workloads. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 026: Control objective and observed conditions
+
+In review cycle 026, the model-serving scheduler limits retries with exponential delay and randomized jitter. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is stale routing information during a rolling deployment. Under that scenario, the service discovery plane records an idempotency key before publishing a state transition. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes queue depth, tail latency, and cancellation rate. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test silent duplication when a client loses the final acknowledgement. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 027: Control objective and observed conditions
+
+In review cycle 027, the cross-region event stream records an idempotency key before publishing a state transition. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is resource fragmentation caused by incompatible request shapes. Under that scenario, the model-serving scheduler applies bounded backpressure before accepting additional work. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes error-budget consumption and dependency saturation. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test a retry storm after a regional network interruption. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 028: Control objective and observed conditions
+
+In review cycle 028, the object-storage gateway verifies ownership through a renewable lease. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is correlated failure across services sharing the same control plane. Under that scenario, the feature retrieval layer preserves request lineage across asynchronous boundaries. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes cache hit ratio, transfer bytes, and eviction frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test correlated failure across services sharing the same control plane. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 029: Control objective and observed conditions
+
+In review cycle 029, the feature retrieval layer uses monotonic sequence numbers to reject stale updates. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is a retry storm after a regional network interruption. Under that scenario, the admission controller verifies ownership through a renewable lease. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes checkpoint duration, replay distance, and recovery time. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test resource fragmentation caused by incompatible request shapes. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 030: Control objective and observed conditions
+
+In review cycle 030, the GPU worker pool applies bounded backpressure before accepting additional work. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is silent duplication when a client loses the final acknowledgement. Under that scenario, the cross-region event stream moves oversized batches into a lower-priority scheduling class. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes time to first token, batch occupancy, and preemption count. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test stale routing information during a rolling deployment. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 031: Control objective and observed conditions
+
+In review cycle 031, the service discovery plane moves oversized batches into a lower-priority scheduling class. The control is evaluated against cache hit ratio, transfer bytes, and eviction frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is priority inversion between interactive and background workloads. Under that scenario, the GPU worker pool limits retries with exponential delay and randomized jitter. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes lease age, replication lag, and conflict frequency. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test priority inversion between interactive and background workloads. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
+Section 032: Control objective and observed conditions
+
+In review cycle 032, the admission controller separates readiness from liveness during partial dependency failures. The control is evaluated against lease age, replication lag, and conflict frequency, because an isolated average can conceal changes in the tail of the distribution. Reviewers should preserve timestamps, decision inputs, and ownership records so that later analysis can distinguish an expected operational variation from a genuine control failure.
+
+The primary scenario is stale routing information during a rolling deployment. Under that scenario, the replicated metadata service uses monotonic sequence numbers to reject stale updates. The assessment must state which assumptions remain valid, which dependencies have become unavailable, and which actions are safe to repeat. A recovery that restores service but corrupts ordering, attribution, or study evidence is not considered successful.
+
+Evidence for this section includes queue depth, tail latency, and cancellation rate. Compare the baseline with a moderate disturbance and a severe but plausible disturbance. Also test silent duplication when a client loses the final acknowledgement. Record both the immediate response and the delayed consequence, since a locally successful intervention can transfer risk to another component, reporting period, institution, or stakeholder group.
