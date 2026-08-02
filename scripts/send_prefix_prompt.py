@@ -139,6 +139,7 @@ def main() -> int:
         with urlopen(request, timeout=args.timeout) as response:
             response_body = response.read().decode("utf-8")
             request_id = response.headers.get("x-request-id")
+            response_headers = dict(response.headers.items())
     except HTTPError as error:
         error_body = error.read().decode("utf-8", errors="replace")
         print(f"OpenAI API returned HTTP {error.code}: {error_body}", file=sys.stderr)
@@ -173,6 +174,8 @@ def main() -> int:
         "cached_tokens": prompt_details.get("cached_tokens"),
         "cache_write_tokens": prompt_details.get("cache_write_tokens"),
         "assistant_content": assistant_content,
+        "response_headers": response_headers,
+        "api_response": result,
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
