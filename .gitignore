@@ -22,9 +22,6 @@ vllm_metrics_*.csv
 *.log
 runs/
 
-# Downloaded model and tokenizer artifacts
-model-export/
-
 # Hugging Face download metadata
 .cache/huggingface/
 

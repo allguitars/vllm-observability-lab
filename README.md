@@ -28,6 +28,9 @@ prompts/
   prefix_a_*.txt            # 分散式系統 prompt
   prefix_b_*.txt            # 金融風險 prompt
   prefix_c_*.txt            # 生物醫學 prompt
+tokenizers/
+  gemma-3-27b-it/
+    tokenizer.json          # 可重現 Gemma 3 27B IT token 計數的最小 runtime 檔案
 docs/
   vllm-metrics-analysis-report-2026-07-25.md
 ```
@@ -41,6 +44,9 @@ cp .env.example .env
 ```
 
 `.env` 含有可能的 API key，已被 Git 忽略，請勿提交。
+
+`tokenizers/gemma-3-27b-it/tokenizer.json` 會由 Git 追蹤，因此 clone 後安裝
+`requirements.txt` 即可重現 Prompt token 計數，不需要另外下載模型權重。
 
 ## API 呼叫設定
 
