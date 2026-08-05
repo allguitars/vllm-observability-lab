@@ -19,10 +19,13 @@ ENV_KEYS = {
     "OPENAI_API_KEY",
     "LLM_BASE_URL",
     "MODEL_NAME",
-    "TOKEN_LIMIT_PARAMETER",
+    "TOKEN_LIMIT_PARAMETER_NAME",
     "REASONING_EFFORT",
 }
-TOKEN_LIMIT_PARAMETERS = {"max_completion_tokens", "max_tokens"}
+TOKEN_LIMIT_PARAMETER_NAMES = {"max_completion_tokens", "max_tokens"}
+
+# Enough for the expected "READY" response while keeping generated KV cache small.
+DEFAULT_MAX_OUTPUT_TOKENS = 16
 
 
 def load_env_file(path: Path) -> None:
@@ -49,7 +52,10 @@ def load_env_file(path: Path) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Send a prefix text file with a 16-token completion limit.",
+        description=(
+            "Send a prefix text file with a "
+            f"{DEFAULT_MAX_OUTPUT_TOKENS}-token completion limit."
+        ),
     )
     parser.add_argument(
         "prefix_file",
@@ -101,14 +107,14 @@ def main() -> int:
         print(error, file=sys.stderr)
         return 2
 
-    token_limit_parameter = os.environ.get(
-        "TOKEN_LIMIT_PARAMETER",
+    token_limit_parameter_name = os.environ.get(
+        "TOKEN_LIMIT_PARAMETER_NAME",
         "max_completion_tokens",
     )
-    if token_limit_parameter not in TOKEN_LIMIT_PARAMETERS:
-        supported_parameters = ", ".join(sorted(TOKEN_LIMIT_PARAMETERS))
+    if token_limit_parameter_name not in TOKEN_LIMIT_PARAMETER_NAMES:
+        supported_parameters = ", ".join(sorted(TOKEN_LIMIT_PARAMETER_NAMES))
         print(
-            "TOKEN_LIMIT_PARAMETER must be one of: "
+            "TOKEN_LIMIT_PARAMETER_NAME must be one of: "
             f"{supported_parameters}.",
             file=sys.stderr,
         )
@@ -117,7 +123,7 @@ def main() -> int:
     payload = {
         "model": args.model,
         "messages": [{"role": "user", "content": prompt}],
-        token_limit_parameter: 16,
+        token_limit_parameter_name: DEFAULT_MAX_OUTPUT_TOKENS,
     }
     reasoning_effort = os.environ.get("REASONING_EFFORT")
     if reasoning_effort:

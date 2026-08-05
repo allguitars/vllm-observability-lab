@@ -19,7 +19,10 @@ A1 → A2 → B1 → C1 → A3
 ```text
 scripts/
   collect_vllm_metrics.py   # 定期收集 vLLM /metrics 並輸出 CSV
+  run_test_flow.py          # 執行可設定的測試流程並輸出 JSONL
   send_prefix_prompt.py     # 將一個 prefix 檔送至 OpenAI-compatible API
+flows/
+  *.flow.json               # Prompt 與 metrics snapshot 的執行順序
 prompts/
   generate_long_prompts.py  # 以 Gemma 3 27B tokenizer 產生固定長 prompt
   prefix_a_*.txt            # 分散式系統 prompt
@@ -47,8 +50,9 @@ cp .env.example .env
 | 變數 | 用途 | OpenAI 測試值 | H200 vLLM 值 |
 |---|---|---|---|
 | `LLM_BASE_URL` | API 根網址，必須包含 `/v1` | `https://api.openai.com/v1` | `http://<H200_HOST>:8000/v1` |
+| `VLLM_METRICS_URL` | Prometheus metrics endpoint | 不適用 | `http://<VLLM_HOST>:8000/metrics` |
 | `MODEL_NAME` | 對外 model ID | `gpt-5.6-luna` | `/v1/models` 回傳的 `data[].id` |
-| `TOKEN_LIMIT_PARAMETER` | request 的輸出 token 欄位 | `max_completion_tokens` | `max_tokens` |
+| `TOKEN_LIMIT_PARAMETER_NAME` | request 的輸出 token 欄位名稱 | `max_completion_tokens` | `max_tokens` |
 | `REASONING_EFFORT` | 有值時才傳送 `reasoning_effort` | `none` | 留空 |
 | `OPENAI_API_KEY` | Bearer 認證 key | OpenAI API key | vLLM `--api-key` 的值；未啟用驗證時留空 |
 
@@ -57,7 +61,7 @@ OpenAI 設定範例：
 ```dotenv
 LLM_BASE_URL=https://api.openai.com/v1
 MODEL_NAME=gpt-5.6-luna
-TOKEN_LIMIT_PARAMETER=max_completion_tokens
+TOKEN_LIMIT_PARAMETER_NAME=max_completion_tokens
 REASONING_EFFORT=none
 OPENAI_API_KEY=sk-...
 ```
@@ -66,8 +70,9 @@ H200 vLLM 設定範例：
 
 ```dotenv
 LLM_BASE_URL=http://<H200_HOST>:8000/v1
+VLLM_METRICS_URL=http://<VLLM_HOST>:8000/metrics
 MODEL_NAME=<served-model-name>
-TOKEN_LIMIT_PARAMETER=max_tokens
+TOKEN_LIMIT_PARAMETER_NAME=max_tokens
 REASONING_EFFORT=
 OPENAI_API_KEY=
 ```
@@ -113,6 +118,28 @@ python scripts/send_prefix_prompt.py prompts/prefix_a_distributed_systems.txt
   prompt cache accounting；vLLM 不一定回傳這些欄位。
 
 ## 收集 vLLM Metrics
+
+### 執行可設定的測試流程
+
+`flows/*.flow.json` 可交替執行 `capture_metrics` 與 `send_prompt`。例如：
+
+```bash
+python scripts/run_test_flow.py flows/prefix-cache-aaba.flow.json
+```
+
+每次執行會建立 `runs/run_<run-id>.jsonl`。其中包含完整的 Prometheus text、
+`send_prefix_prompt.py` JSON response，以及每個步驟的開始、完成或失敗事件。
+第一版不解析、不篩選或聚合 metrics；流程遇到失敗會停止，但已寫入的事件仍會保留。
+
+可用命令列暫時覆蓋 metrics endpoint：
+
+```bash
+python scripts/run_test_flow.py \
+  flows/prefix-cache-aaba.flow.json \
+  --metrics-url http://<VLLM_HOST>:8000/metrics
+```
+
+### 持續收集 CSV
 
 ```bash
 python scripts/collect_vllm_metrics.py
