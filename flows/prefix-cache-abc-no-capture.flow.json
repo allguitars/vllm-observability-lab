@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "prefix-cache-abc",
+  "description": "依序透過 OpenAI-compatible API 發送 Prefix A、B、C",
+  "steps": [
+    {
+      "id": "A",
+      "action": "send_prompt",
+      "prompt_file": "prompts/prefix_a_distributed_systems.txt"
+    },
+    {
+      "id": "B",
+      "action": "send_prompt",
+      "prompt_file": "prompts/prefix_b_financial_risk.txt"
+    },
+    {
+      "id": "C",
+      "action": "send_prompt",
+      "prompt_file": "prompts/prefix_c_biomedical_research.txt"
+    }
+  ]
+}
