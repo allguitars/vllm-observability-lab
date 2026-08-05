@@ -20,6 +20,7 @@ htmlcov/
 # Runtime metrics and logs
 vllm_metrics_*.csv
 *.log
+runs/
 
 # Downloaded model and tokenizer artifacts
 model-export/
