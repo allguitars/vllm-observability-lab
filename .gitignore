@@ -27,6 +27,11 @@ model-export/
 # Hugging Face download metadata
 .cache/huggingface/
 
+# Project-local agent skills and generated slide artifacts
+.agents/
+.frontend-slides/
+tmp/
+
 # Editors and operating systems
 .DS_Store
 .idea/
