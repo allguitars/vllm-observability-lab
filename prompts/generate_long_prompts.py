@@ -9,7 +9,7 @@ from tokenizers import Tokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
 TOKENIZER_PATH = (
-    ROOT / "model-export" / "gemma3-27b-it-tokenizer" / "tokenizer.json"
+    ROOT / "tokenizers" / "gemma-3-27b-it" / "tokenizer.json"
 )
 OUTPUT_DIR = ROOT / "prompts"
 MIN_CHAT_TOKENS = 7600
