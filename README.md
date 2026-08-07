@@ -32,6 +32,8 @@ tokenizers/
   gemma-3-27b-it/
     tokenizer.json          # 可重現 Gemma 3 27B IT token 計數的最小 runtime 檔案
 docs/
+  project-context.md                         # 跨對話的專案背景、決策與待辦
+  prefix-cache-hit-analysis-report-2026-08-05.md
   vllm-metrics-analysis-report-2026-07-25.md
 ```
 
@@ -127,11 +129,101 @@ python scripts/send_prefix_prompt.py prompts/prefix_a_distributed_systems.txt
 
 ### 執行可設定的測試流程
 
-`flows/*.flow.json` 可交替執行 `capture_metrics` 與 `send_prompt`。例如：
+`flows/*.flow.json` 用來定義 Prompt 與 metrics snapshot 的執行順序。執行器會
+按照 `steps` 陣列由上到下逐步執行；任何步驟失敗時，流程會立即停止。
+
+執行 AABA prefix cache 實驗：
 
 ```bash
 python scripts/run_test_flow.py flows/prefix-cache-aaba.flow.json
 ```
+
+只發送 A、B、C Prompt，不擷取 metrics：
+
+```bash
+python scripts/run_test_flow.py flows/prefix-cache-abc-no-capture.flow.json
+```
+
+#### Flow 格式
+
+以下是同時包含兩種 action 的最小範例：
+
+```json
+{
+  "schema_version": 1,
+  "id": "prefix-cache-aaba",
+  "description": "測試 AABA prefix cache 流程",
+  "steps": [
+    {
+      "id": "M0",
+      "action": "capture_metrics",
+      "label": "Before A1"
+    },
+    {
+      "id": "A1",
+      "action": "send_prompt",
+      "prompt_file": "prompts/prefix_a_distributed_systems.txt"
+    }
+  ]
+}
+```
+
+頂層欄位：
+
+| 欄位 | 必要 | 說明 |
+|---|---|---|
+| `schema_version` | 是 | Flow schema 版本；目前只支援整數 `1`。 |
+| `id` | 是 | Flow 識別名稱，也會成為輸出檔名的一部分。只允許英文字母、數字、`.`、`_`、`-`，且第一個字元必須是英文字母或數字。 |
+| `description` | 否 | Flow 的文字說明。 |
+| `steps` | 是 | 非空陣列；陣列順序就是實際執行順序。 |
+
+每個 step 的共用欄位：
+
+| 欄位 | 必要 | 說明 |
+|---|---|---|
+| `id` | 是 | Step 識別名稱；格式限制與 flow `id` 相同，而且在同一個 flow 內不可重複。 |
+| `action` | 是 | 目前只支援 `send_prompt` 或 `capture_metrics`。 |
+| `label` | 否 | 方便閱讀的文字標籤，會原樣記錄在 JSONL event 中。 |
+
+`send_prompt` 會呼叫 `scripts/send_prefix_prompt.py`，並將其完整 JSON 輸出寫入
+step 的完成事件：
+
+```json
+{
+  "id": "A1",
+  "action": "send_prompt",
+  "prompt_file": "prompts/prefix_a_distributed_systems.txt"
+}
+```
+
+| 欄位 | 必要 | 說明 |
+|---|---|---|
+| `prompt_file` | 是 | Prompt 檔案路徑。路徑一律相對於 repo root，而且檔案必須位於 repo 內。 |
+
+`send_prompt` 使用 `.env` 中的 `LLM_BASE_URL`、`MODEL_NAME`、
+`TOKEN_LIMIT_PARAMETER_NAME`、`REASONING_EFFORT` 與 `OPENAI_API_KEY`。
+
+`capture_metrics` 會對 vLLM Prometheus endpoint 發送一次 HTTP GET，並保存未解析的
+完整 response text：
+
+```json
+{
+  "id": "M0",
+  "action": "capture_metrics",
+  "label": "Before A1"
+}
+```
+
+只要 flow 中包含 `capture_metrics`，就必須透過 `.env` 的
+`VLLM_METRICS_URL`、shell 同名環境變數或 `--metrics-url` 提供 endpoint。
+命令列參數的優先順序最高，shell 環境變數優先於 `.env`。
+
+完整 AABA 範例請參考
+[`flows/prefix-cache-aaba.flow.json`](flows/prefix-cache-aaba.flow.json)；只發送 Prompt
+的範例請參考
+[`flows/prefix-cache-abc-no-capture.flow.json`](flows/prefix-cache-abc-no-capture.flow.json)。
+
+#### 執行參數與輸出
 
 每次執行會建立 `runs/run_<run-id>.jsonl`。其中包含完整的 Prometheus text、
 `send_prefix_prompt.py` JSON response，以及每個步驟的開始、完成或失敗事件。
@@ -144,6 +236,27 @@ python scripts/run_test_flow.py \
   flows/prefix-cache-aaba.flow.json \
   --metrics-url http://<VLLM_HOST>:8000/metrics
 ```
+
+其他可用參數：
+
+| 參數 | 預設值 | 用途 |
+|---|---:|---|
+| `--output-root` | repo 下的 `runs/` | 指定 JSONL 輸出目錄。 |
+| `--metrics-timeout` | 10 秒 | 單次 metrics request timeout。 |
+| `--prompt-timeout` | 300 秒 | 單次 LLM request timeout。 |
+
+一個成功的 run 依序包含：
+
+```text
+run_started
+step_started → step_completed
+step_started → step_completed
+...
+run_completed (status: success)
+```
+
+若 step 執行失敗，對應事件會是 `step_failed`，最後的 `run_completed` status
+會是 `failed`；使用者中斷時則會記錄 `step_cancelled` 與 `cancelled` status。
 
 ### 持續收集 CSV
 
