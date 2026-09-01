@@ -21,6 +21,13 @@ htmlcov/
 vllm_metrics_*.csv
 *.log
 runs/
+!finetune/runs/
+finetune/runs/*
+!finetune/runs/.gitkeep
+
+# Local fine-tuning data may be confidential or too large for Git.
+finetune/datasets/local/*
+!finetune/datasets/local/.gitkeep
 
 # Hugging Face download metadata
 .cache/huggingface/

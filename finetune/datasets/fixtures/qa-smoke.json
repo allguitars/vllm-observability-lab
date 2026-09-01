@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is 2 plus 2?",
+    "answer": "2 plus 2 equals 4."
+  },
+  {
+    "question": "What is the capital of Taiwan?",
+    "answer": "The capital of Taiwan is Taipei."
+  },
+  {
+    "question": "Reply with READY.",
+    "answer": "READY"
+  }
+]

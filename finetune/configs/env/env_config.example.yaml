@@ -1,0 +1,12 @@
+# Based on aiDAPTIVLink 2.0 text-generation env_config.yaml.
+# All non-empty paths must be paths inside the Phison training container.
+path_settings:
+  lora:
+    lora_weight: ""
+    lora_output_dir: ""
+  model_name_or_path: ""
+  train_data_path: []
+  val_data_path: null
+  nvme_path: ""
+  output_dir: ""
+  log_name: ""

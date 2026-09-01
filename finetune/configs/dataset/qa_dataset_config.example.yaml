@@ -1,0 +1,11 @@
+# Based on aiDAPTIVLink 2.0 QA_dataset_config.yaml.
+# Replace data_path with the mounted path inside the Phison training container.
+qa_smoke:
+  data_path: ""
+  strategy: "qa"
+  system_prompt: "You are a helpful assistant."
+  user_prompt: "Please answer the following question: {question}"
+  question_key: "question"
+  answer_key: "answer"
+  exp_type: "train"
+  label_key: "answer"
