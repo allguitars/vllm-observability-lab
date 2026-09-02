@@ -1,0 +1,56 @@
+services:
+  phison-finetune:
+    image: ${PHISON_IMAGE:?Set PHISON_IMAGE in compose.env.}
+    container_name: ${CONTAINER_NAME:?Set CONTAINER_NAME in compose.env.}
+    runtime: nvidia
+    gpus: all
+    ipc: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    volumes:
+      # Mounts reproduced from the aiDAPTIVLink2 fine-tuning training slide.
+      - type: bind
+        source: ${HOST_MODEL_DIR:?Set HOST_MODEL_DIR in compose.env.}
+        target: /app
+      - type: bind
+        source: ${HOST_NVME_DIR:?Set HOST_NVME_DIR in compose.env.}
+        target: /mnt/nvme0
+      - type: bind
+        source: /dev/mapper
+        target: /dev/mapper
+      - type: bind
+        source: /var/lock
+        target: /var/lock
+      - type: bind
+        source: ${HOST_USER_DIR:?Set HOST_USER_DIR in compose.env.}
+        target: /user
+
+      # Repository-managed fine-tuning inputs and runtime evidence.
+      - type: bind
+        source: ${FINETUNE_CONFIG_DIR:?Set FINETUNE_CONFIG_DIR in compose.env.}
+        target: /workspace/finetune/configs
+        read_only: true
+      - type: bind
+        source: ${FINETUNE_DATASET_DIR:?Set FINETUNE_DATASET_DIR in compose.env.}
+        target: /workspace/finetune/datasets
+        read_only: true
+      - type: bind
+        source: ${FINETUNE_TOOLKIT_DIR:?Set FINETUNE_TOOLKIT_DIR in compose.env.}
+        target: /workspace/finetune/toolkit
+        read_only: true
+      - type: bind
+        source: ${FINETUNE_RUNS_DIR:?Set FINETUNE_RUNS_DIR in compose.env.}
+        target: /workspace/finetune/runs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids:
+                - ${MIG_DEVICE_ID:?Set MIG_DEVICE_ID in compose.env.}
+              capabilities:
+                - gpu
