@@ -3,11 +3,13 @@ services:
     image: ${PHISON_IMAGE:?Set PHISON_IMAGE in compose.env.}
     container_name: ${CONTAINER_NAME:?Set CONTAINER_NAME in compose.env.}
     runtime: nvidia
-    gpus: all
     ipc: host
     privileged: true
     stdin_open: true
     tty: true
+    environment:
+      NVIDIA_VISIBLE_DEVICES: ${MIG_DEVICE_ID:?Set MIG_DEVICE_ID in compose.env.}
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
     ulimits:
       memlock: -1
       stack: 67108864
