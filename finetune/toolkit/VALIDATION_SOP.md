@@ -63,6 +63,47 @@ PY
 `specify_gpu_index=0` 指的就是這個容器內 device。`0` 不是 host 上的 MIG UUID；需以
 第 2 步與此步的 `nvidia-smi -L` 輸出交叉對照。
 
+### 3.1 若容器仍看見多個 MIG：停止並收集 NVIDIA runtime 證據
+
+若 rendered Compose 指定一個 `MIG_DEVICE_ID`，但 container 的 `nvidia-smi -L` 仍列出
+多個 MIG slice，或 `torch.cuda.device_count()` 不為 `1`，不要執行 Toolkit。這代表目前
+container 的裝置隔離尚未驗證；`project.ini` 的 `specify_gpu_index=0` 不能補救這個問題。
+
+在 H200 host 執行以下命令。`CONTAINER_ID` 可使用完整 container ID 或可唯一識別的前綴；
+這些是非互動式查詢，不需要 `-it`。
+
+```bash
+CONTAINER_ID=<container-id>
+
+docker inspect "$CONTAINER_ID" \
+  --format '{{json .HostConfig.DeviceRequests}}' \
+  | tee "../runs/${RUN_ID}/container-device-requests.txt"
+
+docker inspect "$CONTAINER_ID" \
+  --format '{{range .Config.Env}}{{println .}}{{end}}' \
+  | grep '^NVIDIA_' \
+  | tee "../runs/${RUN_ID}/container-config-nvidia-env.txt"
+
+docker exec "$CONTAINER_ID" env \
+  | grep '^NVIDIA_' \
+  | tee "../runs/${RUN_ID}/container-runtime-nvidia-env.txt"
+```
+
+應同時保留第 2 步的 `compose.rendered.yml`。若 `NVIDIA_VISIBLE_DEVICES` 存在，應記錄其值
+是否等於本次的 `MIG_DEVICE_ID`。NVIDIA runtime 支援以 MIG UUID 作為
+`NVIDIA_VISIBLE_DEVICES` 值。目前的 `finetune/container/docker-compose.yml` 應包含：
+
+```yaml
+environment:
+  NVIDIA_VISIBLE_DEVICES: ${MIG_DEVICE_ID}
+  NVIDIA_DRIVER_CAPABILITIES: compute,utility
+```
+
+套用此 Compose 後必須重新建立 container，並重跑第 2–3 步。若 container 仍看見多個 slice，或
+`privileged: true`、vendor image 與 NVIDIA runtime 的組合使隔離行為無法符合預期，保留上述
+證據並向群聯確認 aiDAPTIVLink 2.0 的 MIG fine-tuning 支援範圍；不要將未隔離環境的結果解讀為
+middleware 效益。
+
 ## 4. 設定並執行 Toolkit
 
 在 **可寫的 Toolkit 工作副本** 中，先設定 `project.ini`：
