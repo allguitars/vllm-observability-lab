@@ -4,6 +4,14 @@
 預期的 MIG slice。這份 SOP 只確認設備映射與保留證據；不以結果宣告 aiDAPTIVLink
 2.0 已支援或已驗證 MIG fine-tuning。
 
+## 目前驗證範圍
+
+- 依群聯口頭資訊，支援 MIG 的 middleware 預計於第四季釋出；現行 2.0 容器尚不可視為
+  已支援 MIG fine-tuning。
+- 可依投影片的 `privileged` 啟動方式進行 Toolkit 與 aiDAPTIVCache 的功能 smoke test。
+- 這類結果只能證明訓練流程是否可執行；不可據此宣告 MIG 隔離、MIG 支援或 middleware
+  效益已驗證。
+
 ## 前置條件
 
 - 已在 H200 host 取得本次要使用的 MIG UUID：`nvidia-smi -L` 的 `MIG-...` 值。
