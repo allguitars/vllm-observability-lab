@@ -1,7 +1,0 @@
-GPU 0: NVIDIA H200 NVL (UUID: GPU-8bdc99e1-0f4a-dc81-4da4-39950b3d8b8f)
-  MIG 3g.71gb     Device  0: (UUID: MIG-21a0bb79-3b1e-5c87-b27d-d5e07f6e635b)
-  MIG 2g.35gb     Device  1: (UUID: MIG-71b909ae-d4ce-565f-a2d4-41ea6412e301)
-  MIG 2g.35gb     Device  2: (UUID: MIG-121c79c9-111f-52f0-8c4d-fe0ba01ef54d)
-GPU 1: NVIDIA H200 NVL (UUID: GPU-76af8142-f604-edc0-e418-3c82d2687947)
-  MIG 4g.71gb     Device  0: (UUID: MIG-ba6b0508-89b5-51f5-92ee-8d06d3a23742)
-  MIG 3g.71gb     Device  1: (UUID: MIG-d05aac7e-4aed-5f3b-b804-0a2a653e1e7e)
