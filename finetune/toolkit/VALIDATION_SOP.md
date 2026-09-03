@@ -141,7 +141,40 @@ python3 aidaptest_run.py --t 1
 
 確認無誤後才使用 `--t 2` 找最大 batch，或 `--t 3` 先找最大 batch 再做效能測試。
 
-## 5. 執行期間與結束後：保存證據
+## 5. 執行期間：收集 aiDAPTIVCache SSD I/O 證據
+
+在 H200 host 的另一個 terminal 執行。此環境中 `/mnt/nvme0` 的 `ai-ai` LVM
+由 `nvme1n1` 與 `nvme2n1` 組成；只監控這兩顆 aiDAPTIVCache SSD，不納入作為
+系統與一般資料碟的 `nvme0n1`。
+
+```bash
+findmnt -no SOURCE /mnt/nvme0
+lsblk -o NAME,TYPE,SIZE,MOUNTPOINTS
+```
+
+接著在執行 Toolkit 前啟動監控；保持它持續執行至 Toolkit 結束，再停止背景程序。
+
+```bash
+# 模型、t1 | t2 | t3
+RUN_ID="toolkit-gemma-3-12b-it-t1-$(date +%Y%m%d-%H%M%S)"
+RUN_DIR="finetune/runs/${RUN_ID}"
+mkdir -p "$RUN_DIR"
+
+iostat -dxm 1 nvme1n1 nvme2n1 > "$RUN_DIR/host-ssd-iostat.txt" &
+IOSTAT_PID=$!
+
+# 在另一個 terminal 於容器中執行 Toolkit --t 1 / --t 2 / --t 3
+# python3 aidaptest_run.py --t 1
+
+kill "$IOSTAT_PID"
+```
+
+判讀 `host-ssd-iostat.txt` 時，將目標 SSD 在 Toolkit 前的閒置值與執行期間的
+`r/s`、`w/s`、`rMB/s`、`wMB/s`、`await`、`%util` 對照。若 I/O 在 Toolkit 執行時間
+內明顯高於閒置值，這是 aiDAPTIVCache SSD 被使用的佐證；但同一顆 SSD 的其他工作負載也
+可能造成 I/O，因此這項證據本身不能單獨證明是 middleware offload 或量化其效益。
+
+## 6. 執行期間與結束後：保存證據
 
 Toolkit 執行期間或剛結束時，在容器內再次執行：
 
