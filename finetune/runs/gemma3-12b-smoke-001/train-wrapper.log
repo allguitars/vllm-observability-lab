@@ -1,0 +1,16 @@
+[PHISON AIDAPTIV][INFO] YamlParamsValidationError: 5 validation errors for ExpConfig
+run_settings.model_saver
+  Field required [type=missing, input_value={'task_type': 'text-gener...optimizer_state': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+run_settings.lr_scheduler
+  Field required [type=missing, input_value={'task_type': 'text-gener...optimizer_state': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+run_settings.optimizer
+  Field required [type=missing, input_value={'task_type': 'text-gener...optimizer_state': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+run_settings.early_stop
+  Field required [type=missing, input_value={'task_type': 'text-gener...optimizer_state': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+run_settings.lora
+  Field required [type=missing, input_value={'task_type': 'text-gener...optimizer_state': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing

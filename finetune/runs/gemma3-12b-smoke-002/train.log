@@ -1,0 +1,10 @@
+[INFO] [runner.py:579:main] cmd=/usr/bin/python3 -u -m phisonlib.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMF19 --master_addr=127.0.0.1 --master_port=8299 /home/root/aiDAPTIV2/text-generation/train.py --model_name_or_path /app/gemma-3-12b-it --optimizer_path  --max_seq_len 2048 --nvme_path /mnt/nvme0 --beta1 0.9 --beta2 0.95 --eps 1e-08 --weight_decay 0.01 --precision_mode 1 --learning_rate 7e-06 --num_train_epochs 1 --max_iter -1 --lr_scheduler_mode 1 --train_dataset_config_path /workspace/finetune/configs/dataset/qa_dataset_config.yaml --per_device_train_batch_size 1 --gradient_accumulation_steps 4 --triton --num_of_iteration_to_save_model 2 --max_num_of_saved_model_on_epoch_end -1 --max_num_of_saved_model_on_iteration 2 --output_dir /workspace/finetune/runs/gemma3-12b-smoke-002/trained-model
+nnodes=1, num_local_procs=1, node_rank=0
+global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0]})
+dist_world_size=1
+Setting CUDA_VISIBLE_DEVICES=0
+#### ======== [INITIALIZE Tokenizer] ======== ####
+#### ======== [INITIALIZE Dataloader] ======== ####
+data_path count:2, --- count:0
+Killing subprocess 267
+['/usr/bin/python3', '-u', '/home/root/aiDAPTIV2/text-generation/train.py', '--local_rank=0', '--num_gpus=1', '--model_name_or_path', '/app/gemma-3-12b-it', '--optimizer_path', '', '--max_seq_len', '2048', '--nvme_path', '/mnt/nvme0', '--beta1', '0.9', '--beta2', '0.95', '--eps', '1e-08', '--weight_decay', '0.01', '--precision_mode', '1', '--learning_rate', '7e-06', '--num_train_epochs', '1', '--max_iter', '-1', '--lr_scheduler_mode', '1', '--train_dataset_config_path', '/workspace/finetune/configs/dataset/qa_dataset_config.yaml', '--per_device_train_batch_size', '1', '--gradient_accumulation_steps', '4', '--triton', '--num_of_iteration_to_save_model', '2', '--max_num_of_saved_model_on_epoch_end', '-1', '--max_num_of_saved_model_on_iteration', '2', '--output_dir', '/workspace/finetune/runs/gemma3-12b-smoke-002/trained-model'] exits with return code = 1
