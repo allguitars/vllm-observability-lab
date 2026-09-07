@@ -1,0 +1,11 @@
+# Based on aiDAPTIVLink 2.0 QA_dataset_config.yaml.
+# Replace data_path with the mounted path inside the Phison training container.
+qa_smoke:
+  data_path: '/workspace/finetune/datasets/fixtures/qa-smoke.json'
+  strategy: 'qa' # qa | rag | pretrain | harmony
+  system_prompt: "This is a chat between a user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions based on the context. The assistant should also indicate when the answer cannot be found in the context."
+  user_prompt: '{question}'
+  question_key: 'instruct'
+  answer_key: 'output'
+  exp_type: 'train' # train | inference | eval
+  label_key: 'output'
