@@ -1,5 +1,6 @@
 # Based on aiDAPTIVLink 2.0 QA_dataset_config.yaml.
-# Replace data_path with the mounted path inside the Phison training container.
+# Replace the JSON path with the mounted path inside the Phison training container.
+# This middleware version counts matching text in comments; do not repeat the JSON-path field name outside its YAML field.
 qa_smoke:
   data_path: '/workspace/finetune/datasets/fixtures/qa-smoke.json'
   strategy: 'qa' # qa | rag | pretrain | harmony
