@@ -20,31 +20,31 @@ run_settings: # 訓練任務與執行設定。
   precision_mode: 1 # 0 為 BF16；1 為 BF16 與 FP32 混合精度。
   enable_save_optimizer_state: false # 是否保存 optimizer state，供下次訓練接續使用。
 
-model_saver: # 模型 checkpoint 保存設定。
-  max_num_of_saved_model_on_epoch_end: -1 # 每個 epoch 結束時最多保留的模型數；-1 等同 num_train_epochs。
-  enable_save_model_on_iteration: false # 是否依 iteration 週期額外保存模型。
-  max_num_of_saved_model_on_iteration: 2 # iteration checkpoint 最多保留份數；文件建議至少 2。
-  num_of_iteration_to_save_model: 2 # 每隔幾個 iteration 保存一次；必須為 gradient_accumulation_steps 的整數倍。
+  model_saver: # 模型 checkpoint 保存設定。
+    max_num_of_saved_model_on_epoch_end: -1 # 每個 epoch 結束時最多保留的模型數；-1 等同 num_train_epochs。
+    enable_save_model_on_iteration: false # 是否依 iteration 週期額外保存模型。
+    max_num_of_saved_model_on_iteration: 2 # iteration checkpoint 最多保留份數；文件建議至少 2。
+    num_of_iteration_to_save_model: 2 # 每隔幾個 iteration 保存一次；必須為 gradient_accumulation_steps 的整數倍。
 
-lr_scheduler: # 學習率排程設定。
-  mode: 1 # -1=LinearLR、0=LinearLR、1=CosineAnnealingLR、2=ExponentialLR、3=MultiplicativeLR、4=StepLR、5=MultiStepLR。
-  learning_rate: 0.000007 # 學習率，會直接影響訓練結果。
+  lr_scheduler: # 學習率排程設定。
+    mode: 1 # -1=LinearLR、0=LinearLR、1=CosineAnnealingLR、2=ExponentialLR、3=MultiplicativeLR、4=StepLR、5=MultiStepLR。
+    learning_rate: 0.000007 # 學習率，會直接影響訓練結果。
 
-optimizer: # Adam optimizer 超參數。
-  beta1: 0.9 # Adam 的 beta1。
-  beta2: 0.95 # Adam 的 beta2。
-  eps: 0.00000001 # Adam 的 epsilon。
-  weight_decay: 0.01 # 權重衰減係數。
+  optimizer: # Adam optimizer 超參數。
+    beta1: 0.9 # Adam 的 beta1。
+    beta2: 0.95 # Adam 的 beta2。
+    eps: 0.00000001 # Adam 的 epsilon。
+    weight_decay: 0.01 # 權重衰減係數。
 
-early_stop: # 依驗證集 val_loss 提早停止的設定。
-  enable: false # 是否啟用提早停止。
-  min_delta: 0.01 # val_loss 相較最佳值至少改善此幅度才視為改善。
-  patience: 2 # val_loss 未改善超過此次數時停止訓練。
-  verbose: false # 是否輸出 loss 訊息。
+  early_stop: # 依驗證集 val_loss 提早停止的設定。
+    enable: false # 是否啟用提早停止。
+    min_delta: 0.01 # val_loss 相較最佳值至少改善此幅度才視為改善。
+    patience: 2 # val_loss 未改善超過此次數時停止訓練。
+    verbose: false # 是否輸出 loss 訊息。
 
-lora: # LoRA 訓練設定。
-  enable_lora: false # 是否啟用 LoRA。
-  lora_rank: 8 # LoRA 低秩矩陣的維度。
-  lora_alpha: 16 # LoRA 權重矩陣的縮放係數。
-  lora_task_type: 'CAUSAL_LM' # LoRA 任務類型；本版文件列出的支援值為 CAUSAL_LM。
-  lora_target_modules: null # 指定套用 adapter 的模組名稱；null 表示未指定。
+  lora: # LoRA 訓練設定。
+    enable_lora: false # 是否啟用 LoRA。
+    lora_rank: 8 # LoRA 低秩矩陣的維度。
+    lora_alpha: 16 # LoRA 權重矩陣的縮放係數。
+    lora_task_type: 'CAUSAL_LM' # LoRA 任務類型；本版文件列出的支援值為 CAUSAL_LM。
+    lora_target_modules: null # 指定套用 adapter 的模組名稱；null 表示未指定。

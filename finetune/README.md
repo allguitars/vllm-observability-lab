@@ -112,6 +112,6 @@ cat /workspace/finetune/runs/gemma3-12b-smoke-001/train-exit-code.txt
 ls -lah /workspace/finetune/runs/gemma3-12b-smoke-001/trained-model
 ```
 
-`train-exit-code.txt` 為 `0` 才表示 wrapper 正常結束；同時應檢查 `train.log` 是否有完成、checkpoint 或模型保存的訊息。
+`train-exit-code.txt` 為 `0` 只表示 `phisonai2` 回傳成功；仍應檢查 `train-wrapper.log` 與 `train.log` 是否有錯誤，以及是否有完成、checkpoint 或模型保存的訊息。部分參數驗證錯誤也可能回傳 `0`。
 
 `runs/` 是 bind mount 到 host 的持久化目錄，因此保存在此處的 log、時間紀錄與 `trained-model/` 不會隨 container 移除而消失。

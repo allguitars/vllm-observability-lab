@@ -20,31 +20,31 @@ run_settings:
   precision_mode: 1
   enable_save_optimizer_state: false
 
-model_saver:
-  max_num_of_saved_model_on_epoch_end: -1
-  enable_save_model_on_iteration: false
-  max_num_of_saved_model_on_iteration: 2
-  num_of_iteration_to_save_model: 2
+  model_saver:
+    max_num_of_saved_model_on_epoch_end: -1
+    enable_save_model_on_iteration: false
+    max_num_of_saved_model_on_iteration: 2
+    num_of_iteration_to_save_model: 2
 
-lr_scheduler:
-  mode: 1
-  learning_rate: 0.000007
+  lr_scheduler:
+    mode: 1
+    learning_rate: 0.000007
 
-optimizer:
-  beta1: 0.9
-  beta2: 0.95
-  eps: 0.00000001
-  weight_decay: 0.01
+  optimizer:
+    beta1: 0.9
+    beta2: 0.95
+    eps: 0.00000001
+    weight_decay: 0.01
 
-early_stop:
-  enable: false
-  min_delta: 0.01
-  patience: 2
-  verbose: false
+  early_stop:
+    enable: false
+    min_delta: 0.01
+    patience: 2
+    verbose: false
 
-lora:
-  enable_lora: false
-  lora_rank: 8
-  lora_alpha: 16
-  lora_task_type: 'CAUSAL_LM'
-  lora_target_modules: null
+  lora:
+    enable_lora: false
+    lora_rank: 8
+    lora_alpha: 16
+    lora_task_type: 'CAUSAL_LM'
+    lora_target_modules: null
