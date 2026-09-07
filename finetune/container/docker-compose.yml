@@ -46,6 +46,10 @@ services:
       - type: bind
         source: ${FINETUNE_RUNS_DIR:?Set FINETUNE_RUNS_DIR in compose.env.}
         target: /workspace/finetune/runs
+      - type: bind
+        source: ../scripts
+        target: /workspace/finetune/scripts
+        read_only: true
     deploy:
       resources:
         reservations:
