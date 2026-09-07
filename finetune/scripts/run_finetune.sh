@@ -25,17 +25,24 @@ fi
 
 mkdir -p "$RUN_DIR"
 date -Is > "$RUN_DIR/train-started-at.txt"
+START_EPOCH_SECONDS="$(date +%s)"
 
-/usr/bin/time \
-  -o "$RUN_DIR/train-wall-time.txt" \
-  -f 'elapsed=%E\nexit=%x' \
-  phisonai2 \
-    --env_config "$ENV_CONFIG" \
-    --exp_config "$EXP_CONFIG" \
+phisonai2 \
+  --env_config "$ENV_CONFIG" \
+  --exp_config "$EXP_CONFIG" \
   > "$RUN_DIR/train-wrapper.log" 2>&1
 
 EXIT_CODE=$?
 date -Is > "$RUN_DIR/train-finished-at.txt"
+END_EPOCH_SECONDS="$(date +%s)"
+ELAPSED_SECONDS=$((END_EPOCH_SECONDS - START_EPOCH_SECONDS))
+
+printf 'elapsed=%02d:%02d:%02d\nexit=%s\n' \
+  "$((ELAPSED_SECONDS / 3600))" \
+  "$(((ELAPSED_SECONDS % 3600) / 60))" \
+  "$((ELAPSED_SECONDS % 60))" \
+  "$EXIT_CODE" \
+  > "$RUN_DIR/train-wall-time.txt"
 printf '%s\n' "$EXIT_CODE" > "$RUN_DIR/train-exit-code.txt"
 
 exit "$EXIT_CODE"
