@@ -27,12 +27,12 @@ mkdir -p "$RUN_DIR"
 date -Is > "$RUN_DIR/train-started-at.txt"
 START_EPOCH_SECONDS="$(date +%s)"
 
-phisonai2 \
+PYTHONUNBUFFERED=1 phisonai2 \
   --env_config "$ENV_CONFIG" \
   --exp_config "$EXP_CONFIG" \
-  > "$RUN_DIR/train-wrapper.log" 2>&1
+  2>&1 | tee "$RUN_DIR/train-wrapper.log"
 
-EXIT_CODE=$?
+EXIT_CODE=${PIPESTATUS[0]}
 date -Is > "$RUN_DIR/train-finished-at.txt"
 END_EPOCH_SECONDS="$(date +%s)"
 ELAPSED_SECONDS=$((END_EPOCH_SECONDS - START_EPOCH_SECONDS))
