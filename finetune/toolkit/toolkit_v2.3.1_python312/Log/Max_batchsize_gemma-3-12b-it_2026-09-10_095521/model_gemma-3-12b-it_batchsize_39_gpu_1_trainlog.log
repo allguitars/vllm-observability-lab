@@ -1,0 +1,159 @@
+[INFO] [runner.py:579:main] cmd=/usr/bin/python3 -u -m phisonlib.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMF19 --master_addr=127.0.0.1 --master_port=8299 /home/root/aiDAPTIV2/text-generation/train.py --model_name_or_path /app/gemma-3-12b-it --optimizer_path  --max_seq_len 2048 --nvme_path /mnt/nvme0 --beta1 0.9 --beta2 0.95 --eps 1e-08 --weight_decay 0.01 --precision_mode 1 --learning_rate 7e-06 --num_train_epochs 1 --max_iter 12 --lr_scheduler_mode -1 --train_dataset_config_path /workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Max_batchsize_gemma-3-12b-it_2026-09-10_095521/qa_dataset_config_0.yaml --per_device_train_batch_size 39 --gradient_accumulation_steps 4 --triton --num_of_iteration_to_save_model 4 --max_num_of_saved_model_on_epoch_end -1 --max_num_of_saved_model_on_iteration 2
+nnodes=1, num_local_procs=1, node_rank=0
+global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0]})
+dist_world_size=1
+Setting CUDA_VISIBLE_DEVICES=0
+#### ======== [INITIALIZE Tokenizer] ======== ####
+#### ======== [INITIALIZE Dataloader] ======== ####
+[INFO] get dataset name:  ../../products/aiDAPTIVLink/toolkit_dataset_10k.json  training_strategy:  QA
+#### ======== [INITIALIZE Model] ======== ####
+[INFO] [create_hf_model] init from pretrained
+[INFO] You are loading [Gemma3ForConditionalGeneration] with FlashAttention2
+[INFO] You are setting [Gemma3ForConditionalGeneration] with Gradient Checkpointing
+[INFO] create current swap data path: /mnt/nvme0/phison_23172
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] VisionEncoder with FusedEmbedding kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] VisionEncoder with FusedGateMLP kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] VisionEncoder with FusedQKVOLinear kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] VisionEncoder with FusedRoPE kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] TextDecoder with FusedEmbedding kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] TextDecoder with FusedGateMLP kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] TextDecoder with FusedQKVOLinear kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] TextDecoder with FusedRoPE kernel
+[INFO] You are accelerating [Gemma3ForConditionalGeneration] TextDecoder with FusedLinearXentropy kernel
+[2026-09-10 16:35:59.127023] [INFO] Enable Early-stopping: False
+[INFO] The current training schedule consists of 1 epochs with 12 iterations each.
+[INFO] The accumulated time is set to 4 so the training will be updated 3 times during each epoch.
+[INFO] If the trained model does not show significant improvement, you may consider increasing the number of update cycles.
+[INFO] If the trained model shows signs of overfitting, you should decrease the number of update cycles.
+[2026-09-10 16:35:59.127148] [INFO] Beginning of Epoch 1/1, Total Micro Batches 257
+[2026-09-10 16:35:59.217733] [PHISON START] Epoch: 0, Iteration: 0
+[2026-09-10 16:35:59.218683] [Forward][start]
+[2026-09-10 16:36:12.909534] [Forward][time spent]:13.690823078155518
+[2026-09-10 16:36:16.507762] [Loss]:14.1831693649292
+[2026-09-10 16:36:16.507850] [Backward][start]
+[2026-09-10 16:36:44.585543] [Backward][time spent]:28.07766079902649
+[2026-09-10 16:36:44.585791] [Update][Start]
+[2026-09-10 16:36:45.196442] [Update][time spent]:0.6106123924255371
+[2026-09-10 16:36:45.196575] [PHISON END] Iteration: 0
+
+[2026-09-10 16:36:45.248829] [PHISON START] Epoch: 0, Iteration: 1
+[2026-09-10 16:36:45.249183] [Forward][start]
+[2026-09-10 16:36:54.411589] [Forward][time spent]:9.162386894226074
+[2026-09-10 16:36:58.093954] [Loss]:14.830907821655273
+[2026-09-10 16:36:58.094031] [Backward][start]
+[2026-09-10 16:37:27.823893] [Backward][time spent]:29.7298321723938
+[2026-09-10 16:37:27.824155] [Update][Start]
+[2026-09-10 16:37:28.412946] [Update][time spent]:0.588749885559082
+[2026-09-10 16:37:28.413081] [PHISON END] Iteration: 1
+
+[2026-09-10 16:37:28.464225] [PHISON START] Epoch: 0, Iteration: 2
+[2026-09-10 16:37:28.464573] [Forward][start]
+[2026-09-10 16:37:37.632315] [Forward][time spent]:9.167704105377197
+[2026-09-10 16:37:41.314238] [Loss]:14.778631210327148
+[2026-09-10 16:37:41.314340] [Backward][start]
+[2026-09-10 16:38:11.163577] [Backward][time spent]:29.8492169380188
+[2026-09-10 16:38:11.163809] [Update][Start]
+[2026-09-10 16:38:11.730272] [Update][time spent]:0.5664231777191162
+[2026-09-10 16:38:11.730413] [PHISON END] Iteration: 2
+
+[2026-09-10 16:38:11.781589] [PHISON START] Epoch: 0, Iteration: 3
+[2026-09-10 16:38:11.781929] [Forward][start]
+[2026-09-10 16:38:20.948388] [Forward][time spent]:9.1664457321167
+[2026-09-10 16:38:24.632252] [Loss]:14.714109420776367
+[2026-09-10 16:38:24.632314] [Backward][start]
+[2026-09-10 16:38:54.386914] [Backward][time spent]:29.7545804977417
+[2026-09-10 16:38:54.387118] [Update][Start]
+using avx512bf16
+max_compute_thread = 62
+[2026-09-10 16:39:25.693627] [Update][time spent]:31.30647087097168
+[2026-09-10 16:39:25.693783] [PHISON END] Iteration: 3
+
+[2026-09-10 16:39:25.693810] [INFO] Training efficiency: 1546.6581001010736 (tokens/s)
+
+[2026-09-10 16:39:25.744639] [PHISON START] Epoch: 0, Iteration: 4
+[2026-09-10 16:39:25.744972] [Forward][start]
+[2026-09-10 16:39:34.908880] [Forward][time spent]:9.163890600204468
+[2026-09-10 16:39:38.590058] [Loss]:5.731650352478027
+[2026-09-10 16:39:38.590121] [Backward][start]
+[2026-09-10 16:40:04.225147] [Backward][time spent]:25.635007619857788
+[2026-09-10 16:40:04.225381] [Update][Start]
+[2026-09-10 16:40:04.783879] [Update][time spent]:0.558459997177124
+[2026-09-10 16:40:04.784022] [PHISON END] Iteration: 4
+
+[2026-09-10 16:40:04.834068] [PHISON START] Epoch: 0, Iteration: 5
+[2026-09-10 16:40:04.834396] [Forward][start]
+[2026-09-10 16:40:13.985121] [Forward][time spent]:9.150704383850098
+[2026-09-10 16:40:17.665270] [Loss]:6.117048263549805
+[2026-09-10 16:40:17.665336] [Backward][start]
+[2026-09-10 16:40:47.094488] [Backward][time spent]:29.429131984710693
+[2026-09-10 16:40:47.094692] [Update][Start]
+[2026-09-10 16:40:47.668535] [Update][time spent]:0.5738034248352051
+[2026-09-10 16:40:47.668636] [PHISON END] Iteration: 5
+
+[2026-09-10 16:40:47.716851] [PHISON START] Epoch: 0, Iteration: 6
+[2026-09-10 16:40:47.717169] [Forward][start]
+[2026-09-10 16:40:56.874780] [Forward][time spent]:9.157593250274658
+[2026-09-10 16:41:00.556296] [Loss]:6.288517951965332
+[2026-09-10 16:41:00.556345] [Backward][start]
+[2026-09-10 16:41:30.271620] [Backward][time spent]:29.715255975723267
+[2026-09-10 16:41:30.271827] [Update][Start]
+[2026-09-10 16:41:30.838573] [Update][time spent]:0.5667068958282471
+[2026-09-10 16:41:30.838701] [PHISON END] Iteration: 6
+
+[2026-09-10 16:41:30.886810] [PHISON START] Epoch: 0, Iteration: 7
+[2026-09-10 16:41:30.887126] [Forward][start]
+[2026-09-10 16:41:40.037773] [Forward][time spent]:9.150629758834839
+[2026-09-10 16:41:43.718221] [Loss]:6.111466884613037
+[2026-09-10 16:41:43.718299] [Backward][start]
+[2026-09-10 16:42:13.459800] [Backward][time spent]:29.741481065750122
+[2026-09-10 16:42:13.460000] [Update][Start]
+[2026-09-10 16:42:43.930434] [Update][time spent]:30.470396280288696
+[2026-09-10 16:42:43.930564] [PHISON END] Iteration: 7
+
+[2026-09-10 16:42:43.930589] [INFO] Training efficiency: 1611.6486018309727 (tokens/s)
+
+[2026-09-10 16:42:43.979292] [PHISON START] Epoch: 0, Iteration: 8
+[2026-09-10 16:42:43.979612] [Forward][start]
+[2026-09-10 16:42:53.143100] [Forward][time spent]:9.16347050666809
+[2026-09-10 16:42:56.824701] [Loss]:2.835271120071411
+[2026-09-10 16:42:56.824749] [Backward][start]
+[2026-09-10 16:43:22.447989] [Backward][time spent]:25.62322235107422
+[2026-09-10 16:43:22.448197] [Update][Start]
+[2026-09-10 16:43:23.014138] [Update][time spent]:0.5659031867980957
+[2026-09-10 16:43:23.014270] [PHISON END] Iteration: 8
+
+[2026-09-10 16:43:23.062975] [PHISON START] Epoch: 0, Iteration: 9
+[2026-09-10 16:43:23.063292] [Forward][start]
+[2026-09-10 16:43:32.219721] [Forward][time spent]:9.156413316726685
+[2026-09-10 16:43:35.900722] [Loss]:2.8727762699127197
+[2026-09-10 16:43:35.900780] [Backward][start]
+[2026-09-10 16:44:05.584565] [Backward][time spent]:29.683767557144165
+[2026-09-10 16:44:05.584799] [Update][Start]
+[2026-09-10 16:44:06.142733] [Update][time spent]:0.5578980445861816
+[2026-09-10 16:44:06.142874] [PHISON END] Iteration: 9
+
+[2026-09-10 16:44:06.190992] [PHISON START] Epoch: 0, Iteration: 10
+[2026-09-10 16:44:06.191323] [Forward][start]
+[2026-09-10 16:44:15.352681] [Forward][time spent]:9.161343812942505
+[2026-09-10 16:44:19.033318] [Loss]:2.992550849914551
+[2026-09-10 16:44:19.033390] [Backward][start]
+[2026-09-10 16:44:48.703407] [Backward][time spent]:29.669997453689575
+[2026-09-10 16:44:48.703642] [Update][Start]
+[2026-09-10 16:44:49.263914] [Update][time spent]:0.5602338314056396
+[2026-09-10 16:44:49.264056] [PHISON END] Iteration: 10
+
+[2026-09-10 16:44:49.313057] [PHISON START] Epoch: 0, Iteration: 11
+[2026-09-10 16:44:49.313387] [Forward][start]
+[2026-09-10 16:44:58.474879] [Forward][time spent]:9.161473035812378
+[2026-09-10 16:45:02.154477] [Loss]:2.9696431159973145
+[2026-09-10 16:45:02.154532] [Backward][start]
+[2026-09-10 16:45:31.878633] [Backward][time spent]:29.724085330963135
+[2026-09-10 16:45:31.878760] [Update][Start]
+[2026-09-10 16:46:02.190380] [Update][time spent]:30.31160259246826
+[2026-09-10 16:46:02.190488] [PHISON END] Iteration: 11
+
+[2026-09-10 16:46:02.190511] [INFO] Training efficiency: 1611.460443604247 (tokens/s)
+
+[2026-09-10 16:46:02.190631] [INFO] training complete!
+Process 23173 exits successfully.
+[INFO] remove current swap data path: /mnt/nvme0/phison_23172

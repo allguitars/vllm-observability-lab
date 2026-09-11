@@ -9,8 +9,8 @@ process_settings:
 run_settings:
     task_type: "text-generation"
     task_mode: "train"
-    per_device_train_batch_size: 83
-    per_update_total_batch_size: 332
+    per_device_train_batch_size: 84
+    per_update_total_batch_size: 336
     num_train_epochs: 1
     max_iter: 12
     max_seq_len: 2048
