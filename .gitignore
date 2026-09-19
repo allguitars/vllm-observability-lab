@@ -16,11 +16,25 @@ htmlcov/
 .env
 .env.*
 !.env.example
+finetune/container/compose.env
+finetune/configs/env/env_config.yaml
 
 # Runtime metrics and logs
 vllm_metrics_*.csv
 *.log
-runs/
+# runs/
+!finetune/runs/
+# finetune/runs/*
+!finetune/runs/.gitkeep
+# 保留每輪訓練的證據檔（包括 log），但不追蹤模型權重與 checkpoint。
+!finetune/runs/**/*.log
+finetune/runs/**/trained-model/
+# 保留 Toolkit 測試紀錄。
+!finetune/toolkit/**/Log/**/*.log
+
+# Local fine-tuning data may be confidential or too large for Git.
+finetune/datasets/local/*
+!finetune/datasets/local/.gitkeep
 
 # Hugging Face download metadata
 .cache/huggingface/

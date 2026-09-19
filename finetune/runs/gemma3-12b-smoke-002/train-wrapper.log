@@ -1,0 +1,18 @@
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/root/aiDAPTIV2/text-generation/train.py", line 517, in <module>
+[rank0]:     main(args)
+[rank0]:   File "/home/root/aiDAPTIV2/text-generation/train.py", line 376, in main
+[rank0]:     dataloader = prepare_dataloader(args=args,
+[rank0]:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/root/aiDAPTIV2/text-generation/settings/dataloader.py", line 24, in prepare_dataloader
+[rank0]:     dataset_configs = DatasetConfigUtils.load_dataset_config(dataset_config_path, task_mode)
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/root/aiDAPTIV2/text-generation/settings/dataset_configs.py", line 419, in load_dataset_config
+[rank0]:     return cls._load_dataset_yaml_configs(dataset_config_paths, task_mode)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/root/aiDAPTIV2/text-generation/settings/dataset_configs.py", line 446, in _load_dataset_yaml_configs
+[rank0]:     cls._check_yaml_format_for_multi_dataset(config_path)
+[rank0]:   File "/home/root/aiDAPTIV2/text-generation/settings/dataset_configs.py", line 473, in _check_yaml_format_for_multi_dataset
+[rank0]:     raise ValueError(f"[ERROR] Please use '{cls.YAML_SPLITTING_KEY}' to split datasets")
+[rank0]: ValueError: [ERROR] Please use '---' to split datasets
+[rank0]:[W907 10:10:49.378669260 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

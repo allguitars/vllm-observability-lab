@@ -1,0 +1,9 @@
+/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+[rank0]:[W910 17:15:58.028575909 ProcessGroupNCCL.cpp:5068] Guessing device ID based on global rank. This can cause a hang if rank to GPU mapping is heterogeneous. You can specify device_id in init_process_group()
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  8.03it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00, 17.15it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 17.29it/s]
+Some weights of Gemma3ForConditionalGeneration were not initialized from the model checkpoint at /app/gemma-3-12b-it and are newly initialized: ['lm_head.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.

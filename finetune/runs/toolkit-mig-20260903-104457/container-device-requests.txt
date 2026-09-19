@@ -1,0 +1,1 @@
+[{"Driver":"nvidia","Count":0,"DeviceIDs":["MIG-21a0bb79-3b1e-5c87-b27d-d5e07f6e635b"],"Capabilities":[["gpu"]],"Options":null}]

@@ -1,0 +1,36 @@
+[2026-09-09 02:37:50] - INFO  - Log path:/workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750
+[2026-09-09 02:37:50] - ##### Test case expect finish time - 2026-09-09 02:43 #####
+[2026-09-09 02:37:50] - INFO  - Before clear buffer+cache=223.97 GB
+[2026-09-09 02:37:50] - INFO  - Cleaning buffer and cache...
+[2026-09-09 02:38:14] - INFO  - After clear buffer+cache=2.23 GB
+[2026-09-09 02:38:14] - INFO  - [Script step] - Argument setting: successful
+[2026-09-09 02:38:14] - INFO  - [Monitor step] Monitor Start
+[2026-09-09 02:38:22] - INFO  - [Monitor step] Start Monitor: successful
+[2026-09-09 02:38:22] - INFO  - ['phisonai2', '--env_config', '/workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750/env.yaml', '--exp_config', '/workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750/exp.yaml']
+[2026-09-09 02:38:22] - INFO  - Start to run AIDAPTIV...
+[2026-09-09 02:38:22] - INFO  - Successfully run AIDAPTIV, pid is 3364
+[2026-09-09 02:38:22] - INFO  - Checking AIDAPTIV process...
+[2026-09-09 02:38:22] - INFO  - AIDAPTIV is alive.
+[2026-09-09 02:38:22] - INFO  - Polling AIDAPTIV...
+[2026-09-09 02:44:22] - WARNING - Testing Timesup!
+[2026-09-09 02:44:22] - INFO  - Training end.
+[2026-09-09 02:44:32] - INFO  - Ready to kill : root        3365  1.4  0.0 9737152 539284 ?      Ssl  02:38   0:05 python3 /usr/bin/phisonairun2 --specify_gpu=localhost:0 --master_port 8299 /home/root/aiDAPTIV2/text-generation/train.py --model_name_or_path /app/gemma-3-12b-it --optimizer_path  --max_seq_len 2048 --nvme_path /mnt/nvme0 --beta1 0.9 --beta2 0.95 --eps 1e-08 --weight_decay 0.01 --precision_mode 1 --learning_rate 7e-06 --num_train_epochs 1000 --max_iter -1 --lr_scheduler_mode -1 --train_dataset_config_path /workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750/qa_dataset_config_0.yaml --per_device_train_batch_size 1 --gradient_accumulation_steps 4 --triton --num_of_iteration_to_save_model 4 --max_num_of_saved_model_on_epoch_end -1 --max_num_of_saved_model_on_iteration 2
+[2026-09-09 02:44:32] - INFO  - Ready to issue : kill -9 3365
+[2026-09-09 02:44:37] - INFO  - Ready to kill : root        3433  0.0  0.0  21740 16920 ?        Ss   02:38   0:00 /usr/bin/python3 -u -m phisonlib.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMF19 --master_addr=127.0.0.1 --master_port=8299 /home/root/aiDAPTIV2/text-generation/train.py --model_name_or_path /app/gemma-3-12b-it --optimizer_path  --max_seq_len 2048 --nvme_path /mnt/nvme0 --beta1 0.9 --beta2 0.95 --eps 1e-08 --weight_decay 0.01 --precision_mode 1 --learning_rate 7e-06 --num_train_epochs 1000 --max_iter -1 --lr_scheduler_mode -1 --train_dataset_config_path /workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750/qa_dataset_config_0.yaml --per_device_train_batch_size 1 --gradient_accumulation_steps 4 --triton --num_of_iteration_to_save_model 4 --max_num_of_saved_model_on_epoch_end -1 --max_num_of_saved_model_on_iteration 2
+[2026-09-09 02:44:37] - INFO  - Ready to issue : kill -9 3433
+[2026-09-09 02:44:42] - INFO  - Ready to kill : root        3434  395  1.5 219845692 16688840 ?  Rl   02:38  24:10 /usr/bin/python3 -u /home/root/aiDAPTIV2/text-generation/train.py --local_rank=0 --num_gpus=1 --model_name_or_path /app/gemma-3-12b-it --optimizer_path  --max_seq_len 2048 --nvme_path /mnt/nvme0 --beta1 0.9 --beta2 0.95 --eps 1e-08 --weight_decay 0.01 --precision_mode 1 --learning_rate 7e-06 --num_train_epochs 1000 --max_iter -1 --lr_scheduler_mode -1 --train_dataset_config_path /workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750/qa_dataset_config_0.yaml --per_device_train_batch_size 1 --gradient_accumulation_steps 4 --triton --num_of_iteration_to_save_model 4 --max_num_of_saved_model_on_epoch_end -1 --max_num_of_saved_model_on_iteration 2
+[2026-09-09 02:44:42] - INFO  - Ready to issue : kill -9 3434
+[2026-09-09 02:44:47] - INFO  - Detecting terminal log ...
+[2026-09-09 02:44:47] - INFO  - Detecting aiDAPTIV log ...
+[2026-09-09 02:44:47] - Test Result - ### Pass ###
+[2026-09-09 02:44:47] - INFO  - [Script step] - Test flow: successful
+[2026-09-09 02:44:47] - INFO  - Execution time: 0:06:57.222569
+[2026-09-09 02:44:48] - INFO  - [Monitor step] Stop Monitor: successful
+[2026-09-09 02:44:48] - ERROR - In get_nvme_id_ctrl, error: b'sudo: nvme: command not found\n'
+[2026-09-09 02:44:48] - INFO  - [Monitor step] - Parsing Monitor Log: successful
+[2026-09-09 02:44:49] - INFO  - [Monitor step] - Plot Monitor Log: successful
+[2026-09-09 02:44:49] - INFO  - Remove finetune model:
+[2026-09-09 02:44:49] - INFO  - [Script step] - Remove checkpoint: successful
+[2026-09-09 02:44:49] - INFO  - source: /workspace/finetune/toolkit/toolkit_v2.3.1_python312/Script/Model_Test/Phison_2026-09-09_0238.log
+[2026-09-09 02:44:49] - INFO  - target: /workspace/finetune/toolkit/toolkit_v2.3.1_python312/Log/Model_check_gemma-3-12b-it_2026-09-09_023750/Phison_2026-09-09_0238.log
+[2026-09-09 02:44:49] - INFO  - [Script step] - Move log file: successful
